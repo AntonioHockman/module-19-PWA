@@ -27,15 +27,4 @@ warmStrategyCache({
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
-registerRoute(  ({url}) =>
-  url.origin === 'https://third-party.example.com' &&
-  url.pathname.startsWith('/images/'),
-new CacheFirst({
-  cacheName: 'image-cache',
-  plugins: [
-    new CacheableResponsePlugin({
-      statuses: [0, 200],
-    }),
-  ],
-})
-);
+registerRoute(({offlineFallback}) => offlineFallback.mode === 'asset', pageCache); 
