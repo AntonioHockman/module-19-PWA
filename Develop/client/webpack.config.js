@@ -2,6 +2,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+
+
+//look at activity # 16 to see how to use generateSW
+// acitvities on indexDB 22/24 
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
 module.exports = () => {
@@ -26,7 +32,7 @@ module.exports = () => {
         title: 'Just Another Text Editor'
       }),
       new MiniCssExtractPlugin(),
-      new GenerateSW(),
+      new WorkboxPlugin.GenerateSW(),
       new InjectManifest({
           swSrc: './client/src-sw.js',
           swDest: 'service-worker.js',

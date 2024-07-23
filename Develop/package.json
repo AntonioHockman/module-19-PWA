@@ -1,27 +1,24 @@
 {
-  "name": "jate",
+  "name": "14-stu_client-server-solved",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "main": "index.js",
+  "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server",
-    "build": "webpack --mode production",
-    "start": "webpack --watch",
-    "server": "",
-    "install": "",
-    "client": ""
+    "start:dev": "concurrently \"cd client && npm run build\" \"cd server && npm run server\" ",
+    "start": "npm run build && cd server && node server.js",
+    "server": "cd server node server.js --ignore client",
+    "build": "cd client && npm run build",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "client": "cd client && npm start"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "idb": "^8.0.0",
-    "if-env": "^1.0.4"
+    "express": "^4.17.1"
   },
   "devDependencies": {
-    "concurrently": "^5.2.0",
-    "nodemon": "^2.0.4",
-    "webpack-dev-server": "^5.0.4"
+    "concurrently": "^5.2.0"
+  },
+  "comments": {
+    "comment-start:dev": "Script uses concurrently to start client and server apps at same time",
+    "comment-concurrently": "Concurrently is installed as a dev dependency to allow client and server to be started using single script"
   }
 }
