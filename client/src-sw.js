@@ -24,6 +24,11 @@ warmStrategyCache({
   strategy: pageCache,
 });
 
+offlineFallback({
+  urls: ['/style.css', '/'],
+  strategy:pageCache,
+});
+
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
